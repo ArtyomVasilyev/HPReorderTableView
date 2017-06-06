@@ -72,9 +72,9 @@ static NSString *HPReorderTableViewCellReuseIdentifier = @"HPReorderTableViewCel
     [self addGestureRecognizer:_reorderGestureRecognizer];
     
     _reorderDragView = [[UIImageView alloc] init];
-    _reorderDragView.layer.shadowColor = [UIColor blackColor].CGColor;
-    _reorderDragView.layer.shadowRadius = 2;
-    _reorderDragView.layer.shadowOpacity = 0.5;
+    _reorderDragView.layer.shadowColor = [UIColor whiteColor].CGColor;
+    _reorderDragView.layer.shadowRadius = 0;
+    _reorderDragView.layer.shadowOpacity = 0;
     _reorderDragView.layer.shadowOffset = CGSizeMake(0, 0);
     _reorderDragView.layer.masksToBounds = NO;
     
@@ -214,11 +214,11 @@ static NSString *HPReorderTableViewCellReuseIdentifier = @"HPReorderTableViewCel
 
 static UIImage* HPImageFromView(UIView *view)
 {
-    UIGraphicsBeginImageContextWithOptions(view.bounds.size, YES, 0);
+    UIGraphicsBeginImageContextWithOptions(view.frame.size, NO, 0.0);
     [view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    return image;
+    return snapshotImage;
 }
 
 static void HPGestureRecognizerCancel(UIGestureRecognizer *gestureRecognizer)
